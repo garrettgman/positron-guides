@@ -16,23 +16,23 @@ The Positron IDE can help you do both. You can use it to work with two common ty
 
 When you open a project in Positron, Positron will show you which environment it is using at the top of your IDE. Here, Positron is using an environment contained in a folder named .venv and running the Python 3.12.2 interpreter. 
 
-![]()
+![Environment button](images/button.png)
 
 To see the full filepath to the .venv folder, click on the button.
 
-![]()
+![Environment dropdown](images/dropdown.png)
 
 Positron will use this environment when you run Python commands in your Terminal and Session windows. It will also use the environment if you do something that triggers a Python process, like previewing a Quarto doc or running a Shiny for Python app.
 
 Whenever you _re_open a folder in Positron, Positron will activate the environment you used the last time you worked in the folder. If this is your first time opening the folder, Positron will make an educated guess about which environment to use or ask you to select an environment. In that case, the button will display Start Interpreter.
 
-![]()
+![Start interpreter](images/start-interpreter.png)
 
 # How to change your environment
 
 To change the environment, open the drop down menu and click the three dots next to the current environment's name. Positron will list the environments it detects on your machine. Select the one you want to use.
 
-![]()
+![Enviornments list](images/list.png)
 
 But what if you want to create a new environment specific to your project? 
 
@@ -44,19 +44,17 @@ So how do you do it? To create a new environment:
 
 1. Open the Command Palette with **Command + Shift + P** (Mac) or **Control + Shift + P** (Windows and Linux)
 
-![]()
+![Command Palette](images/palette.png)
 
 2. Select the **Python: Create Environment** command.
 
-![]()
-
 3. Then select the type of environment you would like to create: Venv or Conda.
 
-![]()
+![Select type](images/type.png)
 
 4. Next select the Python interpreter (venv) or Python version (conda) that you would like to use for the environment.
 
-![]()
+![Select interpreter](images/interpreter.png)
 
 Positron will create the environment in you current folder and then activate it for use. Along the way, it will do several things:
 
@@ -76,9 +74,21 @@ Each virtual environment in Python starts with a minimal set of packages that in
 
 As we saw above, Positron will also install any packages listed in a `requirements.txt`, `pyproject.toml`, or `environment.yml` file that appears in your directory.
 
-But what if you need to install additional packages? You can do this from the Terminal Window with your preferred method. Many Python users will choose to use Python's `pip` module:
+But what if you need to install additional packages? You can do this from the Terminal Window with your preferred method. Many Python users will choose to use Python's `pip` module. To use it:
 
-![]()
+1. Activate your Python environment in the terminal with the command below. This code assumes that your environment is saved in a folder named `.venv`.
+
+```bash
+source .venv/bin/activate
+```
+
+2. Use the pip install command to install the packages you desire, e.g.,
+
+```bash
+pip install shiny
+```
+
+![Using pip to install the shiny package](images/pip.png)
 
 Python will install the packages into your currently active environment.
 
@@ -109,7 +119,7 @@ This will save the packages to a file named `requirements.txt` in the top-level 
 Alternatively, they can easily load the pacakges manually from the command line with.
 
 ```bash
-pip install -r requirments.txt
+pip install -r requirements.txt
 ```
 
 Often, `requirements.txt` will be enough to make your package reproducible, but you can also specify the Python version your project uses, as well as additional metadata, by creating a `pyproject.toml` file.
