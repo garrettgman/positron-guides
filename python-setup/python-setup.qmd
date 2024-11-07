@@ -32,7 +32,7 @@ Whenever you _re_open a folder in Positron, Positron will activate the environme
 
 To change the environment, open the drop down menu and click the three dots next to the current environment's name. Positron will list the environments it detects on your machine. Select the one you want to use.
 
-![Enviornments list](images/list.png)
+![Enviornments list](images/list.png){width=300}
 
 But what if you want to create a new environment specific to your project? 
 
