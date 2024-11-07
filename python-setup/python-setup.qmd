@@ -1,4 +1,4 @@
-# How to set up your Python environment in Positron
+# How to set up a Python environment in Positron
 
 When you do data science with Python, you should always be clear about which Python "environment" your code runs in. An environment consists of:
 
@@ -12,7 +12,7 @@ The Positron IDE can help you do both. You can use it to work with two common ty
 * **Virtual Environments** - which are Python's [built-in environments](https://docs.python.org/3/glossary.html#term-virtual-environment). A virtual environment is a subdirectory that contains a copy or a symlink to a Python interpreter, as well as a library of packages to be used by the environment.
 * **Conda environments** - which are Python environments managed by the [conda package manager](https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html).
 
-# What environment are you using?
+## Which environment are you using?
 
 When you open a project in Positron, Positron will show you which environment it is using at the top of your IDE. Here, Positron is using an environment contained in a folder named .venv and running the Python 3.12.2 interpreter. 
 
@@ -28,7 +28,7 @@ Whenever you _re_open a folder in Positron, Positron will activate the environme
 
 ![Start interpreter](images/start-interpreter.png)
 
-# How to change your environment
+## How to change your environment
 
 To change the environment, open the drop down menu and click the three dots next to the current environment's name. Positron will list the environments it detects on your machine. Select the one you want to use.
 
@@ -36,7 +36,7 @@ To change the environment, open the drop down menu and click the three dots next
 
 But what if you want to create a new environment specific to your project? 
 
-# Create a new environment
+## Create a new environment
 
 A good best practice is to create a new environment for each new project. This forces you to be intentional about your environment, but it also protects your other projects. If you run each project in the same global environment, then any changes you make with one project will affect other projects. Not so if each project uses its own environment.
 
@@ -63,7 +63,7 @@ Positron will create the environment in you current folder and then activate it 
 
 Now that you have an environment, you can equip it for your needs by installing packages into it.
 
-# Install packages
+## Install packages
 
 Each virtual environment in Python starts with a minimal set of packages that includes:
 
@@ -94,7 +94,7 @@ Python will install the packages into your currently active environment.
 
 Now that you have your environment setup, it is time to document it for your future self and collaborators. 
 
-# Document your environment
+## Document your environment
 
 Reproducing your Python data science project requires two to three things:
 
@@ -106,7 +106,7 @@ But it would be bad manners to check in your environment to your version control
 
 Let's look at two popular ways to do that.
 
-## requirements.txt
+### requirements.txt
 
 First, you can use the `pip freeze` command at the terminal to record the packages that your project depends on, along with their versions:
 
@@ -124,7 +124,7 @@ pip install -r requirements.txt
 
 Often, `requirements.txt` will be enough to make your package reproducible, but you can also specify the Python version your project uses, as well as additional metadata, by creating a `pyproject.toml` file.
 
-## pyproject.toml
+### pyproject.toml
 
 To create a `pyproject.toml` file, execute the following commands in the terminal window.
 
@@ -143,7 +143,7 @@ poetry env use python3.10
 poetry install
 ```
 
-# Summary
+## Summary
 
 Environments are key to reproducible data science with Python. Your code isn't reproducible without one. Use Positron to:
 
