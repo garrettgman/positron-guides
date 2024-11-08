@@ -1,0 +1,154 @@
+# How to set up a Python environment in Positron
+
+When you do data science with Python, you should always be clear about which Python "environment" your code runs in. An environment consists of:
+
+1. An interpreter to run your Python code
+2. A set of packages for the interpreter to use
+
+Environments act as an extension of your code. The same Python code may return a different result—or not run at all—when it is run in a different environment. This creates an obvious problem for reproducibility, but the problem is easy to solve: be intentional about the Python environments you use, and document those environments alongside your code.
+
+The Positron IDE can help you do both. You can use it to work with two common types of environments:
+
+* **Virtual Environments** - which are Python's [built-in environments](https://docs.python.org/3/glossary.html#term-virtual-environment). A virtual environment is a subdirectory that contains a copy or a symlink to a Python interpreter, as well as a library of packages to be used by the environment.
+* **Conda environments** - which are Python environments managed by the [conda package manager](https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html).
+
+## Which environment are you using?
+
+When you open a project in Positron, Positron will show you which environment it is using at the top of your IDE. Here, Positron is using an environment contained in a folder named .venv and running the Python 3.12.2 interpreter. 
+
+![Environment button](images/button.png)
+
+To see the full filepath to the .venv folder, click on the button.
+
+![Environment dropdown](images/dropdown.png)
+
+Positron will use this environment when you run Python commands in your Terminal and Session windows. It will also use the environment if you do something that triggers a Python process, like previewing a Quarto doc or running a Shiny for Python app.
+
+Whenever you _re_open a folder in Positron, Positron will activate the environment you used the last time you worked in the folder. If this is your first time opening the folder, Positron will make an educated guess about which environment to use or ask you to select an environment. In that case, the button will display Start Interpreter.
+
+![Start interpreter](images/start-interpreter.png)
+
+## How to change your environment
+
+To change the environment, open the drop down menu and click the three dots next to the current environment's name. Positron will list the environments it detects on your machine. Select the one you want to use.
+
+![Enviornments list](images/list.png){width=300}
+
+But what if you want to create a new environment specific to your project? 
+
+## Create a new environment
+
+A good best practice is to create a new environment for each new project. This forces you to be intentional about your environment, but it also protects your other projects. If you run each project in the same global environment, then any changes you make with one project will affect other projects. Not so if each project uses its own environment.
+
+So how do you do it? To create a new environment:
+
+1. Open the Command Palette with **Command + Shift + P** (Mac) or **Control + Shift + P** (Windows and Linux)
+
+![Command Palette](images/palette.png)
+
+2. Select the **Python: Create Environment** command.
+
+3. Then select the type of environment you would like to create: Venv or Conda.
+
+![Select type](images/type.png)
+
+4. Next select the Python interpreter (venv) or Python version (conda) that you would like to use for the environment.
+
+![Select interpreter](images/interpreter.png)
+
+Positron will create the environment in you current folder and then activate it for use. Along the way, it will do several things:
+
+- It will install any package dependencies listed in a `requirements.txt`, `pyproject.toml`, or `environment.yml` file that appears in your folder. This is helpful if you've cloned your project from a git collaborator and wish to quickly recreate their environment.
+- It will add your environment directory to your folder's `.gitignore` file, so you will be less likely to commit your environment to github. More on that below.
+
+Now that you have an environment, you can equip it for your needs by installing packages into it.
+
+## Install packages
+
+Each virtual environment in Python starts with a minimal set of packages that includes:
+
+- The Python Standard Library 
+- pip
+- setuptools
+- wheels
+
+As we saw above, Positron will also install any packages listed in a `requirements.txt`, `pyproject.toml`, or `environment.yml` file that appears in your directory.
+
+But what if you need to install additional packages? You can do this from the Terminal Window with your preferred method. Many Python users will choose to use Python's `pip` module. To use it:
+
+1. Activate your Python environment in the terminal with the command below. This code assumes that your environment is saved in a folder named `.venv`.
+
+```bash
+source .venv/bin/activate
+```
+
+2. Use the pip install command to install the packages you desire, e.g.,
+
+```bash
+pip install shiny
+```
+
+![Using pip to install the shiny package](images/pip.png)
+
+Python will install the packages into your currently active environment.
+
+Now that you have your environment setup, it is time to document it for your future self and collaborators. 
+
+## Document your environment
+
+Reproducing your Python data science project requires two to three things:
+
+1. Your data (likely)
+1. Your code 
+1. Your environment
+
+But it would be bad manners to check in your environment to your version control system. For one, your environment directory can be quite large. For two, checking in your environment is unnecessary: you can easily document everything one would need to recreate the environment for themselves.
+
+Let's look at two popular ways to do that.
+
+### requirements.txt
+
+First, you can use the `pip freeze` command at the terminal to record the packages that your project depends on, along with their versions:
+
+```bash
+pip freeze > requirements.txt
+```
+
+This will save the packages to a file named `requirements.txt` in the top-level of your project directory. Check this file into version control. When your collaborators build an environment in their copy of the project directory, Positron will automatically install the packages listed in `requirements.txt`.
+
+Alternatively, they can easily load the pacakges manually from the command line with.
+
+```bash
+pip install -r requirements.txt
+```
+
+Often, `requirements.txt` will be enough to make your package reproducible, but you can also specify the Python version your project uses, as well as additional metadata, by creating a `pyproject.toml` file.
+
+### pyproject.toml
+
+To create a `pyproject.toml` file, execute the following commands in the terminal window.
+
+```bash
+pip install poetry
+poetry init 
+poetry add $(cat requirements.txt)
+```
+
+Poetry will save a file named `pyproject.toml` to the top-level of your project directory. Check this file into version control alongside your `requirement.txt` file. Positron will automatically recreate the environment described in `pyproject.toml` when your collaborators create a new environment in their copy of the project directory.
+
+Alternatively, your collaborators can recreate the environment manually with `poetry`. First, open `pyproject.toml` to read which version of Python to use, then run code like this at the terminal command line:
+
+```bash
+poetry env use python3.10
+poetry install
+```
+
+## Summary
+
+Environments are key to reproducible data science with Python. Your code isn't reproducible without one. Use Positron to:
+
+1. See at a glance which interpreter you are using
+1. Remember and activate the environment you previously used with the project
+1. Automatically recreate an environment from a `requirements.txt`, `pyproject.toml` or `environment.yml` file, for example when you clone a project from GitHub
+
+Learn more at [posit.co/positron/](https://posit.co/positron/).
