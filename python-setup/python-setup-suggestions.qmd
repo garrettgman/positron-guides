@@ -18,7 +18,7 @@ When you open a project in Positron, Positron will show you which environment it
 
 ![Environment button](images/button.png)
 
-To see the full filepath to the .venv folder, click on the button.
+To see the full filepath to the `.venv` folder, click on the button.
 
 ![Environment dropdown](images/dropdown.png)
 
