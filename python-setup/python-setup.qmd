@@ -5,7 +5,7 @@ When you do data science with Python, you should always be clear about which Pyt
 1. An interpreter to run your Python code
 2. A set of packages for the interpreter to use
 
-Environments act as an extension of your code. The same Python code may return a different result—or not run at all—when it is run in a different environment. This creates an obvious problem for reproducibility, but the problem is easy to solve: be intentional about the Python environments you use, and document those environments alongside your code.
+Environments act as a partner to your code. The same Python code may return a different result—or not run at all—when it is run in a different environment. This creates an obvious problem for reproducibility, but the problem has a solution: be intentional about the Python environments you use, and document those environments alongside your code.
 
 The Positron IDE can help you do both. You can use it to work with two common types of environments:
 
