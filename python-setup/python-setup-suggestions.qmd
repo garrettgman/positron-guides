@@ -22,7 +22,7 @@ To see the full filepath to the `.venv` folder, click on the button.
 
 ![Environment dropdown](images/dropdown.png)
 
-Positron will use this environment when you run Python commands in your Terminal and Session windows. It will also use the environment if you do something that triggers a Python process, like previewing a Quarto doc or running a Shiny for Python app.
+Positron will use this environment when you run Python commands in your Terminal and Console. It will also use the environment if you do something that triggers a Python process, like previewing a Quarto doc or running a Shiny for Python app.
 
 Whenever you _re_open a folder in Positron, Positron will activate the environment you used the last time you worked in the folder. If this is your first time opening the folder, Positron will make an educated guess about which environment to use or ask you to select an environment. In that case, the button will display Start Interpreter.
 
