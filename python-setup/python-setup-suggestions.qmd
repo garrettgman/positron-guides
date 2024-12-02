@@ -14,7 +14,7 @@ The Positron IDE can help you do both. You can use it to work with two common ty
 
 ## Which environment are you using?
 
-When you open a project in Positron, Positron will show you which environment it is using at the top of your IDE. Here, Positron is using an environment contained in a folder named .venv and running the Python 3.12.2 interpreter. 
+When you open a project in Positron, Positron will show you which environment it is using at the top of your IDE. Here, Positron is using an environment contained in a folder named `.venv` and running the Python 3.12.2 interpreter. 
 
 ![Environment button](images/button.png)
 
