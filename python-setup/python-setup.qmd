@@ -10,7 +10,7 @@ Environments act as a partner to your code. The same Python code may return a di
 The Positron IDE can help you do both. You can use it to work with two common types of environments:
 
 * **Virtual Environments** - which are Python's [built-in environments](https://docs.python.org/3/glossary.html#term-virtual-environment). A virtual environment is a subdirectory that contains a copy or a symlink to a Python interpreter, as well as a library of packages to be used by the environment.
-* **Conda environments** - which are Python environments managed by the [conda package manager](https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html).
+* **Conda environments** - which are Python environments managed by the [conda package manager](https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html). Conda stores these environments in a central place on your computer.
 
 ## Which environment are you using?
 
